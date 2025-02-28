@@ -1,37 +1,47 @@
-# implicit_diffusion
+# Implicit Diffusion
 
-TODO(b/385296186): Add a description for your new project, explain what is
-being released here, etc... Additional, the following sections are normally
-expected for all releases. Feel free to add additional sections if appropriate
-for your project.
+This is an implementation of the Implicit Diffusion algorithm, reproducing some
+experimental results from the paper ([Implicit Diffusion: Efficient Optimization
+through Stochastic Sampling](https://arxiv.org/abs/2402.05468), Marion et al.,
+2024).
 
-## Installation
-
-Write instructions for how the user should install your code. The instructions
-should ideally be valid when copy-pasted. You can combine this with the Usage
-section if there's no separate installation step.
+The code is written in JAX, and reproduces the results of the paper on reward
+training of Langevin processes (section 5.1)
 
 ## Usage
 
-Write example usage of your code. The instructions should ideally be valid when
-copy-pasted, and will be used by your technical reviewer to verify that your
-package functions correctly.
+In order to run the code, you can copy these files to your local machine and run
+the following command, with at least the two following required flags:
+
+```$ python main.py --file_path=your_file_path --expe_name=your_expe_name```
+
+This will save the results in the folder `your_file_path/your_expe_name` (which
+should already exist), in the form of three .npy files.
+
+These files contain the following information:
+
+- `hist_reward.npy`, a Numpy array of shape `(steps,)` containing the value of
+the reward at each step.
+- `hist_kl_grad.npy`, a Numpy array of shape `(steps,)` containing the value of
+the norm of the gradient for the KL divergence at each step.
+- `hist_theta.npy`, a Numpy array of shape `(steps, 6)` containing the value of
+the parameters of the Langevin process at each step.
 
 ## Citing this work
 
-Add citation details here, usually a pastable BibTeX snippet:
+In order to cite this work in your own work, you can use the following citation:
 
-```latex
-@article{publicationname,
-      title={Publication Name},
-      author={Author One and Author Two and Author Three},
+```
+@article{implicitdiffusion,
+      title={Implicit Diffusion: Efficient Optimization through Stochastic Sampling},
+      author={Marion, Pierre and Korba, Anna and Bartlett, Peter and Blondel, Mathieu and De Bortoli, Valentin and Doucet, Arnaud and Llinares-L{\'o}pez, Felipe and Paquette, Courtney and Berthet, Quentin},
       year={2024},
 }
 ```
 
 ## License and disclaimer
 
-Copyright 2024 DeepMind Technologies Limited
+Copyright 2025 Google LLC
 
 All software is licensed under the Apache License, Version 2.0 (Apache 2.0);
 you may not use this file except in compliance with the Apache 2.0 license.
@@ -49,3 +59,4 @@ either express or implied. See the licenses for the specific language governing
 permissions and limitations under those licenses.
 
 This is not an official Google product.
+
